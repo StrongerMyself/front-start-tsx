@@ -65,7 +65,11 @@
   "dependencies": {
     "@types/axios": "^0.14.0",
     "@types/moment": "^2.13.0",
+    "@types/react-redux": "^7.0.1",
+    "@types/redux": "^3.6.0",
     "axios": "^0.18.0",
-    "moment": "^2.22.2"
+    "moment": "^2.22.2",
+    "react-redux": "^6.0.0",
+    "redux": "^4.0.1"
   }
 }
