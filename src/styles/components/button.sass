@@ -1,0 +1,29 @@
+.btn
+    font: inherit
+    color: inherit
+    user-select: none
+    cursor: pointer
+    &--black
+        background-color: $black
+        color: $fontLight
+        span::after
+            background-color: $fontLight !important
+
+    span
+        position: relative
+        font: inherit
+        color: inherit
+        &:after
+            content: ''
+            position: absolute
+            bottom: 0
+            left: 0
+            display: block
+            width: 0
+            height: 1px
+            background-color: $fontDark
+            transition: 0.3s width
+
+    &:hover
+        span::after
+            width: 100%
