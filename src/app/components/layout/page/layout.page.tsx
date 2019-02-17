@@ -4,7 +4,7 @@ interface Props {
 	className?: string
 }
 
-class Layoutpage extends React.Component<Props, {}> {
+class LayoutPage extends React.Component<Props, {}> {
 	render() {
 		let { children, className } = this.props
 		return (
@@ -17,4 +17,4 @@ class Layoutpage extends React.Component<Props, {}> {
 	}
 }
 
-export default Layoutpage
+export default LayoutPage
