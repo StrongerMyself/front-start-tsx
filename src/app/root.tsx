@@ -9,7 +9,7 @@ interface Props {}
 
 interface State {}
 
-class AppComponent extends React.Component<Props, State> {
+class Root extends React.Component<Props, State> {
 	render() {
 		return (
 			<BaseRouter history={history}>
@@ -26,4 +26,4 @@ class AppComponent extends React.Component<Props, State> {
 	}
 }
 
-export default AppComponent
+export default Root
