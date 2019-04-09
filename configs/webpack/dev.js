@@ -27,5 +27,6 @@ module.exports = merge(commonConfig, {
         hot: true,
         historyApiFallback: true,
         port: port,
+        open: true
     },
 })
