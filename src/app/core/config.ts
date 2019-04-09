@@ -1,5 +1,6 @@
 let config = {
-	api_url: process.env.API_URL || ''
+	host: process.env.HOST || '',
+	api_prefix: process.env.API_PREFIX || '/',
 }
 
 export const setConfig = (key, value) => {
