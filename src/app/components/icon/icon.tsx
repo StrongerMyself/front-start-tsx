@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { FunctionComponent } from 'react'
 import iconObjectData from './icon-object.data'
 import iconActionsData from './icon-actions.data'
 
@@ -7,10 +7,10 @@ const data = {
 	...iconActionsData,
 }
 
-export interface IIcon {
+export interface IconProps {
 	className?: string
 	onClick?: (e) => void
-	icon: string | IconList
+	icon: keyof typeof data
 	width?: string
 	height?: string
 	stroke?: string
@@ -18,18 +18,17 @@ export interface IIcon {
 	style?: object
 }
 
-class Icon extends React.Component<IIcon> {
+export const Icon: FunctionComponent<IconProps> = ({
+	className, onClick, icon = '', width, height, stroke, fill, style
+}) => {
 
-	getProps = (item) => {
-		let { width, height, stroke, fill, style } = this.props
-
+	const getProps = (item) => {
 		width = width || item.width || '0px'
 		height = height || item.height || '0px'
 
 		stroke = stroke || item.stroke || 'none'
 		fill = fill || item.fill || 'none'
 		style = style || item.style || {}
-		style = { transition: '0.3s', ...style }
 
 		return {
 			svgProp: { width, height },
@@ -37,43 +36,17 @@ class Icon extends React.Component<IIcon> {
 		}
 	}
 
-	render() {
-		let { className, onClick, icon } = this.props
-		let item = data[icon] || {}
-		let { viewBox, paths } = item
-		let { svgProp, pathProp } = this.getProps(item)
-		return (
-			<div className={className} onClick={onClick}>
-				<svg viewBox={viewBox} {...svgProp}>
-					{ paths && (paths.map((el, i) =>
-						<path key={i} d={el} {...pathProp} />
-					))}
-				</svg>
-			</div>
-		)
-	}
-}
+	const item = data[icon] || {}
+	const { viewBox, paths } = item
+	const { svgProp, pathProp } = getProps(item)
 
-enum IconList {
-// actions
-	ok = 'ok',
-	search = 'search',
-	plus = 'plus',
-	cross = 'cross',
-	like = 'like',
-	comment = 'comment',
-	shared = 'shared',
-// ux
-	home = 'home',
-	avatar = 'avatar',
-	rocket = 'rocket',
-	calendar = 'calendar',
-	geo = 'geo',
-	star = 'star',
-	eye = 'eye',
-	phone = 'phone',
-	mail = 'mail',
+	return (
+		<div className={className} onClick={onClick}>
+			<svg viewBox={viewBox} {...svgProp}>
+				{ paths && (paths.map((el: string, i: number) =>
+					<path key={i} d={el} {...pathProp} />
+				))}
+			</svg>
+		</div>
+	)
 }
-
-export { IconList }
-export default Icon
