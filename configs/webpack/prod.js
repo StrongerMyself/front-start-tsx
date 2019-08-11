@@ -1,3 +1,5 @@
+require('../utils/load')()
+
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
@@ -7,7 +9,7 @@ const Dotenv = require('dotenv-webpack')
 
 module.exports = merge(commonConfig, {
     mode: 'production',
-    entry: './index.tsx',
+    entry: './src/index.tsx',
     output: {
         filename: './js/bundle.[hash].min.js',
         path: resolve(__dirname, '../../dist'),
@@ -22,7 +24,7 @@ module.exports = merge(commonConfig, {
             }
         ),
         new Dotenv({
-			path: resolve(__dirname, '../../.env.production'),
+			path: resolve(__dirname, '../.env.production'),
 		}),
     ],
 })

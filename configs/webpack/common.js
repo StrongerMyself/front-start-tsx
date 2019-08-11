@@ -1,15 +1,20 @@
 const { resolve } = require('path')
 const { CheckerPlugin } = require('awesome-typescript-loader')
-const TSLintPlugin = require('tslint-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const postcssConfig = require('./postcss')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+console.log(__dirname)
 
 module.exports = {
     resolve: {
+        alias: {
+            src: resolve(__dirname, '../../src/')
+        },
         extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', 'sass', 'scss'],
     },
-    context: resolve(__dirname, '../../src'),
+    context: resolve(__dirname, '../../'),
     module: {
         rules: [
             {
@@ -24,7 +29,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    'style-loader', 
+                    MiniCssExtractPlugin.loader, 
                     { loader: 'css-loader', options: { sourceMap: true } },
                     postcssConfig
                 ],
@@ -32,7 +37,7 @@ module.exports = {
             {
                 test: /\.(scss|sass)$/,
                 loaders: [
-                    'style-loader',
+                    MiniCssExtractPlugin.loader,
                     { loader: 'css-loader', options: { sourceMap: true } },
                     postcssConfig,
                     { loader: 'sass-loader', options: { sourceMap: true } },
@@ -44,7 +49,7 @@ module.exports = {
 					loader: 'file-loader',
 					options: {
 						name: '[name].[ext]',
-						outputPath: 'assets/'
+						outputPath: 'public/'
 					}
 				}]
 			},
@@ -54,7 +59,7 @@ module.exports = {
 					loader: 'file-loader',
 					options: {
 						name: '[name].[ext]',
-						outputPath: 'fonts/'
+						outputPath: 'public/fonts/'
 					}
 				}]
 			},
@@ -62,17 +67,16 @@ module.exports = {
     },
     plugins: [
         new CheckerPlugin(),
-        new TSLintPlugin({ files: ['./src/**/*.ts*'], waitForLinting: true }),
-        new HtmlWebpackPlugin({ template: 'index.html.ejs' }),
+        new HtmlWebpackPlugin({
+            template: './public/index.html',
+            filename: './index.html'
+        }),
         new CopyWebpackPlugin([{
-            from: resolve(__dirname, '../../src/assets/'),
-            to: resolve(__dirname, '../../dist/assets'),
+            from: resolve(__dirname, '../../public/'),
+            to: resolve(__dirname, '../../dist'),
         }]),
+        new MiniCssExtractPlugin({filename: './css/[name].[hash].css'}),
     ],
-    externals: {
-        'react': 'React',
-        'react-dom': 'ReactDOM',
-    },
     performance: {
         hints: false,
     },

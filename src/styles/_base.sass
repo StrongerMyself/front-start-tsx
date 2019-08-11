@@ -3,6 +3,7 @@
 *, *:after, *:before
 	box-sizing: border-box
 	-webkit-tap-highlight-color: transparent
+	@extend %scrollbar
 
 HTML, BODY
 	height: 100%
@@ -44,6 +45,14 @@ UL, OL
 BUTTON
 	cursor: pointer
 
+.hidden
+	display: block
+	width: 1px
+	height: 1px
+	position: absolute
+	opacity: 0
+	visibility: hidden
+
 %no-scrollbar
 	&::-webkit-scrollbar-track
 		background: transparent
@@ -61,8 +70,8 @@ BUTTON
 	&::-webkit-scrollbar-track
 		background: $scroll_track
 	&::-webkit-scrollbar
-		width: 5px
-		height: 5px
+		width: 7px
+		height: 7px
 	&::-webkit-scrollbar-thumb
 		background: $scroll_thumb
 		border-radius: 10em

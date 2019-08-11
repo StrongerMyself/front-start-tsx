@@ -1,0 +1,9 @@
+{
+    "name": "Fight Gym",
+    "short_name": "F-Gym",
+    "display": "standalone",
+    "background_color": "#fff",
+    "theme_color": "#fff",
+    "orientation": "portrait-primary",
+    "description": "Application in development"
+}

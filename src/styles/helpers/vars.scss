@@ -2,7 +2,7 @@
 // Font variables
 // ----------------------------------------------------------------------
 
-$baseFont: 'Roboto', Arial, sans-serif;
+$baseFont: '-apple-system,BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 $titleFont:  Arial, sans-serif;
 
 // ----------------------------------------------------------------------
@@ -19,7 +19,7 @@ $titleFont:  Arial, sans-serif;
 // xxs from ~ to 320     (smartwatch)
 // ----------------------------------------------------------------------
 
-$padd: 30px;
+$padd: 20px;
 $content: 1024px;
 $maxW: $content + ($padd * 2);
 
@@ -33,14 +33,19 @@ $minW: 320px;
 // Colors
 // ----------------------------------------------------------------------
 
+$accent: #434a7f;
+$hoverColor: #fff2da;
+
 $white: #fff; 
 $black: #000; 
+$green: #66a166;
+$red: #d14242;
 
 $fontLight: $white;
 $fontDark: $black; 
 
 $bodyFont: $fontDark;
-$bodyColor: $white;
+$bodyColor: #f0f0f0;
 
 $scroll_track: rgba($black, 0.2);
-$scroll_thumb: rgba($black, 0.8);
+$scroll_thumb: rgba($black, 0.6);
